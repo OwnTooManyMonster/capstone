@@ -1,0 +1,175 @@
+.gridLayout {
+  min-width: 400px;
+  height: 736px;
+  background-color: RGB(25, 30, 40);
+  display: flex;
+  flex-direction: column;
+}
+
+.navigationBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 400px;
+  height: 75px;
+  transition-duration: 5s;
+}
+
+.navigationBarToggle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: rgba(200, 200, 200, 0.1);
+  width: 400px;
+  height: 75px;
+
+  transition-duration: 5s;
+}
+.mainArea {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  height: auto;
+  margin: 1%;
+}
+
+.menuIcon {
+  margin: 3%;
+  color: seashell;
+  font-size: 270%;
+  opacity: 70%;
+  transition-duration: 0.7s;
+  text-shadow: 1pt 1pt rgba(200, 200, 200, 0.4);
+}
+
+.menuIconToggle {
+  opacity: 0%;
+  transition-duration: 0.7s;
+}
+
+.navButton {
+  opacity: 0%;
+  width: 70px;
+  height: 30px;
+  background-color: transparent;
+  margin: 4%;
+  border-radius: 5%;
+  transition-duration: 1.2s;
+}
+
+.navButtonToggle {
+  opacity: 70%;
+  width: 70px;
+  height: 30px;
+  background-color: transparent;
+  margin: 4%;
+  box-shadow: 1pt 1pt 1pt 1pt rgba(192, 192, 192, 0.3);
+  border-radius: 5%;
+  transition-duration: 2s;
+}
+
+.buttonParaIndex {
+  padding-top: 6%;
+  color: whitesmoke;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+  font-weight: bolder;
+  text-shadow: 1px 0px rgb(200, 200, 200);
+  text-align: center;
+}
+
+.contentDiv {
+  overflow-y: scroll;
+  width: 400px;
+  height: 590px;
+}
+
+.contentBox {
+  position: relative;
+  margin: 10.8%;
+  width: 315px;
+  height: 315px;
+  background-color: rgba(50, 50, 60, 0.3);
+  border-radius: 1%;
+  animation: boxSize 2s;
+  top: 0px;
+  left: 0px;
+  transition-duration: 1.5s;
+}
+
+.contentBox:hover {
+  box-shadow: 2pt 2pt 4pt 3pt rgba(200, 200, 200, 0.4);
+}
+
+@keyframes boxSize {
+  0% {
+    width: 0px;
+    height: 0px;
+    top: 140px;
+    left: 140px;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+  100% {
+    width: 310px;
+    height: 310px;
+    top: 0px;
+    left: 0px;
+    border-radius: 0%;
+    background-color: rgba(50, 50, 60, 0.3);
+  }
+}
+
+.paraBox {
+  opacity: 70%;
+  padding-top: 50px;
+  color: seashell;
+  text-align: center;
+  font-size: 88%;
+  text-shadow: 1pt 1pt grey;
+  animation: contentPara 12s;
+  transition-duration: 1.5s;
+}
+
+.paraBox:hover {
+  font-size: 90%;
+  opacity: 80%;
+}
+
+@keyframes contentPara {
+  0% {
+    opacity: 0%;
+  }
+  10% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.backgroundVideo {
+  position: absolute;
+  width: 400px;
+  height: 640px;
+  opacity: 50%;
+}
+/* Parts for card.js */
+.videoBox {
+  width: 370px;
+  height: 370px;
+  background-color: transparent;
+  margin: 5%;
+}
+
+.videoPara {
+  color: aliceblue;
+}
+
+.cardBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 400px;
+  height: 400px;
+  background-color: grey;
+}
