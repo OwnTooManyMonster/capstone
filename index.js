@@ -58,6 +58,26 @@ menuIcon.addEventListener("click", () => {
   }, 7000);
 });
 
+let paraContact = document.querySelector(".paraContact");
+
+setTimeout(function () {
+  paraContact.innerHTML = "Our oceans are endangered";
+}, 7000);
+
+setTimeout(function () {
+  paraContact.innerHTML = "We need to ask for your contribution";
+}, 14000);
+
+// navButton.forEach((Button,index) =>{
+//   menuIcon.addEventListener("click", () => {
+//         navButton[i].classList.toggle("navButton");
+//         navButton[i].classList.toggle("navButtonToggle");
+//         setTimeout(function () {
+//           navButton[i].classList.toggle("navButton");
+//           navButton[i].classList.toggle("navButtonToggle");
+//         }, 7000);
+
+// });
 for (let i = 0; i < navButton.length; i++) {
   menuIcon.addEventListener("click", () => {
     navButton[i].classList.toggle("navButton");
@@ -69,61 +89,19 @@ for (let i = 0; i < navButton.length; i++) {
   });
 }
 
-for (let i = 0; i < navButton.length; i++) {
-  navButton[i].addEventListener("touchstart", () => {
-    navButton[i].classList.toggle("navButtonToggle");
-  });
-}
-
-let contentBox = document.querySelectorAll(".contentBox");
-
-window.addEventListener("scroll", () => {
-for (let i = 0; i < contentBox.length; i++) {
-      let rect = contentBox[i].getBoundingClientRect();
-    if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-      console.log(rect);
-    }
-  };
-}
+// for (let i = 0; i < navButton.length; i++) {
+//   navButton[i].addEventListener("touchstart", () => {
+//     navButton[i].classList.toggle("navButtonToggle");
+//   });
+// }
 
 // let contentBox = document.querySelectorAll(".contentBox");
 
-// for (let i = 0; i < contentBox.length; i++) {
-//   let rect = contentBox[i].getBoundingClientRect();
-//   console.log(rect);
-// }
-
-// let observer = new IntersectionObserver(
-//   function (entries) {
-//     if (entries[0].isIntersecting === true)
-//       console.log("Element is fully visible in screen");
-//   },
-//   { threshold: [1] }
-// );
-
-// observer.observe(document.querySelector("contentBox"));
-
-// let options = {
-//   root: document.querySelector("contentDiv"),
-//   rootMargin: "0px",
-//   threshold: 1.0,
-// };
-
-// let observer = new IntersectionObserver(callback, options);
-
-// let target = document.querySelector("contentBox");
-// observer.observe(target);
-
-// let callback = (entries, observer) => {
-//   entries.forEach((entry) => {
-//     // Each entry describes an intersection change for one observed
-//     // target element:
-//     //   entry.boundingClientRect
-//     //   entry.intersectionRatio
-//     //   entry.intersectionRect
-//     //   entry.isIntersecting
-//     //   entry.rootBounds
-//     //   entry.target
-//     //   entry.time
-//   });
-// 
+// window.addEventListener("scroll", () => {
+//   for (let i = 0; i < contentBox.length; i++) {
+//     let rect = contentBox[i].getBoundingClientRect();
+//     if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+//       console.log(rect);
+//     }
+//   }
+// });

@@ -1,0 +1,21 @@
+@import "base.css";
+
+.videoBox {
+  width: 370px;
+  height: 370px;
+  background-color: transparent;
+  margin: 5%;
+}
+
+.videoPara {
+  color: aliceblue;
+}
+
+.cardBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 400px;
+  height: 400px;
+  background-color: grey;
+}

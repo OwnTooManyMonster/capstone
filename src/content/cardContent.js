@@ -1,17 +1,17 @@
 let cardContent = [
   {
+    trailer: "Text1",
     video: "Video1",
-    text: "Text1",
   },
 
   {
+    trailer: "Text2",
     video: "Video2",
-    text: "Text2",
   },
 
   {
+    trailer: "Text3",
     video: "Video3",
-    text: "Text3",
   },
 ];
 

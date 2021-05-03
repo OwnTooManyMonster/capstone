@@ -1,0 +1,108 @@
+@import "base.css";
+
+.contentDiv {
+  width: 400px;
+  height: 660px;
+}
+
+.mapBox {
+  position: relative;
+  margin: 13.5% 0% 5% 12%;
+  width: 300px;
+  height: 300px;
+  background-color: rgba(50, 50, 60, 0.8);
+  border-radius: 1%;
+  animation: boxSize 2s;
+  top: 0px;
+  left: 0px;
+  transition-duration: 1.5s;
+  overflow: hidden;
+}
+
+.mapBox:hover {
+  box-shadow: 2pt 2pt 4pt 3pt rgba(200, 200, 200, 0.4);
+}
+
+.statBox {
+  display: inline-block;
+  position: relative;
+  margin: 5px -1px 15px 48px;
+  width: 125px;
+  height: 125px;
+  background-color: rgba(50, 50, 60, 0.8);
+  border-radius: 1%;
+  animation: statSize 2s;
+  top: 0px;
+  left: 0px;
+  transition-duration: 1.5s;
+  overflow: hidden;
+}
+
+.statBox:hover {
+  box-shadow: 2pt 2pt 4pt 3pt rgba(200, 200, 200, 0.4);
+}
+
+@keyframes boxSize {
+  0% {
+    width: 0px;
+    height: 0px;
+    top: 140px;
+    left: 140px;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    top: 0px;
+    left: 0px;
+    border-radius: 0%;
+    background-color: rgba(50, 50, 60, 0.3);
+  }
+}
+
+@keyframes statSize {
+  0% {
+    width: 100px;
+    height: 100px;
+    top: 140px;
+    left: 140px;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+  100% {
+    width: 125px;
+    height: 125px;
+    top: 0px;
+    left: 0px;
+    border-radius: 0%;
+    background-color: rgba(50, 50, 60, 0.3);
+  }
+}
+
+@keyframes contentPara {
+  0% {
+    opacity: 0%;
+  }
+  10% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.backgroundVideo {
+  opacity: 30%;
+  width: 1300px;
+  height: 736px;
+  position: relative;
+  right: 500px;
+}
+
+.videoDiv {
+  width: 400px;
+  height: 736px;
+  position: absolute;
+  overflow: hidden;
+}
