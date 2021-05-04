@@ -17,6 +17,7 @@
   top: 0px;
   left: 0px;
   transition-duration: 1.5s;
+  overflow: hidden;
 }
 
 .contentBox:hover {
@@ -47,7 +48,7 @@
   padding-top: 50px;
   color: seashell;
   text-align: center;
-  font-size: 88%;
+  font-size: 100%;
   text-shadow: 1pt 1pt grey;
   animation: contentPara 12s;
   transition-duration: 1.5s;
@@ -71,15 +72,23 @@
 }
 
 .backgroundVideo {
-  opacity: 20%;
-  width: 400px;
+  opacity: 30%;
+  width: 1300px;
   height: 736px;
   position: relative;
+  right: 390px;
 }
-
+.backgroundVideo2 {
+  opacity: 80%;
+  width: 650px;
+  height: 400px;
+  position: relative;
+  right: 100px;
+  bottom: 50px;
+}
 .videoDiv {
   width: 400px;
-  height: 100vh;
+  height: 736px;
   position: absolute;
   overflow: hidden;
 }
