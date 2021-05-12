@@ -1,5 +1,14 @@
 @import "base.css";
 
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  length: 100%;
+  opacity: 50%;
+}
+
 .contentDiv {
   width: 400px;
   height: 660px;
