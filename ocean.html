@@ -2,6 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <title>oceaneum</title>
     <link
       href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css"
@@ -27,10 +29,10 @@
         </div>
         <div class="contentDiv">
           <div class="mapBox"><div id="map"></div></div>
-          <div class="statBox">BBB</div>
-          <div class="statBox">CCC</div>
-          <div class="statBox">DDD</div>
-          <div class="statBox">EEE</div>
+
+          <div class="statBox1">
+            <canvas id="myChart" width="40" height="40"></canvas>
+          </div>
         </div>
       </main>
       <nav class="navigationBar">
