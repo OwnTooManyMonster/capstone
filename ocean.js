@@ -73,7 +73,7 @@ function masterFetch() {
 masterFetch();
 
 //   DATA CONVERSION FOR CHART.JS
-//console.log(promises);
+
 function dataFormat() {
   let WeatherArray = JSON.parse(localStorage.getItem("WeatherData"));
 
@@ -194,46 +194,46 @@ function dataFormat() {
       labels: controlYears,
       datasets: [
         {
-          label: "N0E",
+          label: "Spitzbergen",
           data: NOE00134778value,
 
           borderColor: ["rgba(150, 50, 50, 0.5)"],
-          borderWidth: 1,
+          borderWidth: 2,
         },
         {
-          label: "SPE",
+          label: "Tenerife",
           data: SPE00120458value,
 
           borderColor: ["rgba(100, 200, 50, 0.5)"],
-          borderWidth: 1,
+          borderWidth: 2,
         },
         {
-          label: "GME",
+          label: "Berlin",
           data: GME00111445value,
 
           borderColor: ["rgba(200, 100, 200, 0.5)"],
-          borderWidth: 1,
+          borderWidth: 2,
         },
         {
-          label: "USW",
+          label: "KeyWest",
           data: USW00012836value,
 
           borderColor: ["rgba(00, 00, 0, 0.5)"],
-          borderWidth: 1,
+          borderWidth: 2,
         },
         {
-          label: "USW2",
+          label: "Hawai",
           data: USW00022521value,
 
           borderColor: ["rgba(255, 255, 255, 0.5)"],
-          borderWidth: 1,
+          borderWidth: 2,
         },
         {
-          label: "USW3",
+          label: "Alaska",
           data: USW00026533value,
 
-          borderColor: ["rgba(255, 0, 255, 0.5)"],
-          borderWidth: 1,
+          borderColor: ["rgba(255, 50, 255, 0.5)"],
+          borderWidth: 2,
         },
       ],
     },
