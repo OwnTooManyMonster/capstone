@@ -8,6 +8,12 @@ const map = new mapboxgl.Map({
   center: [-1.81361, 36.77271], // starting position [lng, lat]
   zoom: -1, // starting zoom
 });
+var marker = new mapboxgl.Marker({
+  color: "red",
+  draggable: false,
+})
+  .setLngLat([15.5, 30.5])
+  .addTo(map);
 
 //  API FETCH
 
@@ -62,11 +68,15 @@ function arrayFetch(element) {
       localStorage.setItem("WeatherData", JSON.stringify(WeatherArray));
     });
 }
+
+// Promise All after all Fetsches resoved calls dataFormat Function to
 const fetchingURL = fetchArray.map((url) => fetch(url).then());
 setTimeout(function () {
   Promise.all(fetchingURL).then(dataFormat);
 }, 4000);
 localStorage.removeItem("WeatherData");
+
+// MASTERFETCH FUNCTION CALLS ARRAYFETCH FUNCTION FOR (FETCHARRAY ARRAY)
 function masterFetch() {
   fetchArray.forEach((element) => arrayFetch(element));
 }
