@@ -1,12 +1,35 @@
 @import "base.css";
-
+/* Mapbox Element */
 #map {
   position: absolute;
   top: 0;
   bottom: 0;
   width: 100%;
-  length: 100%;
   opacity: 50%;
+}
+/* Marker for Mapbox */
+.marker {
+  background-image: url(./src/pic/727720_antenna_512x512.png);
+
+  background-color: rgba(255, 131, 0, 0.6);
+  background-size: 90%;
+  width: 11%;
+  border: black 2pt;
+  box-shadow: 3pt 1pt 1pt 1pt rgba(7, 7, 7, 0.8);
+  height: 11%;
+  border-radius: 50%;
+  cursor: alias;
+}
+.mapboxgl-popup {
+  max-width: 25%;
+  opacity: 75%;
+}
+
+.mapboxgl-popup-content {
+  font-size: medium;
+  font-weight: bold;
+  text-align: left;
+  font-family: "Open Sans", sans-serif;
 }
 
 .contentDiv {
