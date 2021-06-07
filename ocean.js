@@ -6,10 +6,14 @@ mapboxgl.accessToken =
   "pk.eyJ1Ijoib3dudG9vbWFueW1vbnN0ZXIiLCJhIjoiY2tvNzMwMGpuMjk4ZDJvbXZqaHBqanlpbSJ9.DHukChuKakMnzj-mieZ1Og";
 const map = new mapboxgl.Map({
   container: "map", // container ID
-  style: "mapbox://styles/owntoomanymonster/ckot57v681bag17nval9396yq", // style URL
-  center: [-1.81361, 36.77271], // starting position [lng, lat]
-  zoom: -0.5, // starting zoom
+  style: "mapbox://styles/owntoomanymonster/ckorbgpvm41v417o8c5n3savc", // style URL
+  center: [-10, 0], // starting position [lng, lat]
+  pitch: 30,
+  bearing: 0.5,
+  zoom: -0.2, // starting zoom
 });
+
+//Coordinates and Infos for Mapbox Marker
 
 let geojson = {
   type: "FeatureCollection",
@@ -22,7 +26,7 @@ let geojson = {
       },
       properties: {
         title: "Station",
-        description: "Bettles Airport ,Alaska",
+        description: "Bettles Airport, Alaska",
       },
     },
     {
@@ -33,7 +37,7 @@ let geojson = {
       },
       properties: {
         title: "Station",
-        description: "Spitzbergen , Norway",
+        description: "Spitzbergen, Norway",
       },
     },
     {
@@ -44,7 +48,7 @@ let geojson = {
       },
       properties: {
         title: "Station",
-        description: "Hawaii , USA",
+        description: "Hawaii, USA",
       },
     },
     {
@@ -95,7 +99,7 @@ geojson.features.forEach(function (marker) {
 
 //  API FETCH
 
-//  5 times fetch since differnt mandatory Year Selection (10 years max by NOAA Server)
+//  Fetch Url for NOAA Data access  5 seperate fetches necesssary duo to server restricion (max 10 years)
 
 let oneOfFive =
   "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOY&units=METRIC&startdate=1975-01-01&enddate=1984-12-31&datatypeid=TAVG&limit=1000&sortfield=station&stationid=GHCND:NOE00134778&stationid=GHCND:USW00026533&stationid=GHCND:USW00022521&stationid=GHCND:USW00012836&stationid=GHCND:SPE00120458&stationid=GHCND:GME00111445";
@@ -112,12 +116,12 @@ let fourOfFive =
 let fiveOfFive =
   "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOY&units=METRIC&startdate=2015-01-01&enddate=2020-12-31&datatypeid=TAVG&limit=1000&sortfield=station&stationid=GHCND:NOE00134778&stationid=GHCND:USW00026533&stationid=GHCND:USW00022521&stationid=GHCND:USW00012836&stationid=GHCND:SPE00120458&stationid=GHCND:GME00111445";
 
-let fetchArray = [oneOfFive, twoOfFive, threeOfFive, fourOfFive, fiveOfFive];
+let fetchArrays = [oneOfFive, twoOfFive, threeOfFive, fourOfFive, fiveOfFive];
 
 const token = "WVEwvCMCqAKfcjKwwjLJonCdawPQuVeE";
 // MASTERFETCH FUNCTION CALLS ARRAYFETCH FUNCTION FOR (FETCHARRAY ARRAY)
 
-// ARRAY FETCH FUNCTION CALLED IN MASTERFETCH FUNCTION
+// ARRAY FETCH FUNCTION CALLED IN MainFetch FUNCTION
 
 function arrayFetch(element) {
   return fetch(element, {
@@ -148,32 +152,35 @@ function arrayFetch(element) {
 }
 
 // Promise All after all Fetsches resoved calls dataFormat Function to
-const fetchingURL = fetchArray.map((url) => fetch(url).then());
+const fetchingURL = fetchArrays.map((url) => fetch(url).then());
 // setTimeout(function () {
 // Promise.all(fetchingURL).then(dataFormat);
 
 // localStorage.removeItem("WeatherData");
 
-// MASTERFETCH FUNCTION CALLS ARRAYFETCH FUNCTION FOR (FETCHARRAY ARRAY)
-function masterFetch() {
-  fetchArray.forEach((element) => arrayFetch(element));
+// MainFetch FUNCTION CALLS ARRAYFETCH FUNCTION FOR (FETCHARRAY ARRAY)
+function mainFetch() {
+  fetchArrays.forEach((element) => arrayFetch(element));
 }
-//masterFetch();
+//mainFetch();
 
 //   DATA CONVERSION FOR CHART.JS
 
 let WeatherArray = JSON.parse(localStorage.getItem("WeatherData"));
-
+// object destructuring for relevant value in result array
 let ArrayOne = WeatherArray[0]["results"];
 let ArrayTwo = WeatherArray[1]["results"];
 let ArrayThree = WeatherArray[2]["results"];
 let ArrayFour = WeatherArray[3]["results"];
 let ArrayFive = WeatherArray[4]["results"];
 
+// creating one object array with all values for formating
 let MainArray = ArrayOne.concat(ArrayTwo)
   .concat(ArrayThree)
   .concat(ArrayFour)
   .concat(ArrayFive);
+
+//object destructuring for local station data
 
 let NOE00134778 = MainArray.filter(
   ({ station }) => station === "GHCND:NOE00134778"
@@ -194,6 +201,7 @@ let USW00026533 = MainArray.filter(
   ({ station }) => station === "GHCND:USW00026533"
 );
 
+// creating array for data type change and sort for chronological years
 let stationArray = [
   NOE00134778,
   GME00111445,
@@ -217,6 +225,7 @@ for (let i = 0; i < stationArray.length; i++) {
     return a.date - b.date;
   });
 }
+// object destructuring for data visualisation
 
 let NOE00134778date = [];
 let NOE00134778value = [];
@@ -272,7 +281,14 @@ let valueArray = [
   GME00111445value,
   SPE00120458value,
 ];
-let labelArray = ["Alaska", "Spitzbergen", "Hawaii", "Berlin", "Teneriffe"];
+let labelArray = [
+  "Alaska, Bettles Air ",
+  "Norway, Spitzbergen",
+  "Pacific US, Hawaii",
+  "Germany, Berlin",
+  "Spain, Teneriffe",
+];
+
 let controlYears = [
   1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987,
   1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000,
@@ -281,51 +297,250 @@ let controlYears = [
 ]; //   if element controlyears found in array create element in new array else create element controlyear as element in new array with the data of the element controlyear before
 //  Chart.JS
 
+let historicData = [
+  { year: 1900, level: 0 },
+  { year: 1920, level: 0.35 },
+  { year: 1940, level: 0.5 },
+  { year: 1960, level: 0.95 },
+  { year: 1980, level: 1.1 },
+  { year: 2000, level: 1.45 },
+  { year: 2020, level: 2.1 },
+];
+let arrayYear = [];
+let arrayLevel = [];
+for (let i = 0; i < historicData.length; i++) {
+  arrayYear[i] = historicData[i]["year"];
+  arrayLevel[i] = historicData[i]["level"];
+}
+
+let predictionData = [
+  { year: 2020, interLow: 0, interhigh: 0, extreme: 0 },
+  { year: 2050, interLow: 0.25, interhigh: 0.6, extreme: 1.0 },
+  { year: 2075, interLow: 0.35, interhigh: 1.0, extreme: 1.5 },
+  { year: 2100, interLow: 0.5, interhigh: 1.5, extreme: 2.5 },
+];
+
+let predictionYear = [];
+let predictionLevelLow = [];
+let predictionLevelHigh = [];
+let predictionLevelExtreme = [];
+
+for (let i = 0; i < predictionData.length; i++) {
+  predictionYear[i] = predictionData[i]["year"];
+  predictionLevelLow[i] = predictionData[i]["interLow"];
+  predictionLevelHigh[i] = predictionData[i]["interhigh"];
+  predictionLevelExtreme[i] = predictionData[i]["extreme"];
+}
+let predictionArray = [
+  predictionLevelLow,
+  predictionLevelHigh,
+  predictionLevelExtreme,
+];
+
+// Begin Chart.js deafult setup
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
-  type: "line",
-  options: {},
+  type: "bar",
+
   data: {
     labels: controlYears,
     datasets: [
       {
-        label: "Spitzbergen",
-        data: [0],
-        Size: [30],
-        borderColor: ["rgba(255, 131, 0, 0.5)"],
-        backgroundColor: ["rgba(255, 131, 0, 0.5)"],
-        borderWidth: 1,
+        label: "Weather Station",
+
+        data: null,
+        pointStyle: "rectRot",
+        pointRadius: 4,
+        borderColor: ["rgba(255, 135, 0, 0.5)"],
+        backgroundColor: ["rgba(255, 135, 0, 0.3)"],
+        borderWidth: 2,
       },
     ],
   },
   options: {
+    plugins: {
+      legend: {
+        labels: {
+          font: {
+            size: 15,
+          },
+          color: "rgba(200,200,200,0.8)",
+        },
+      },
+    },
     scales: {
       x: {
-        beginAtZero: true,
+        grid: {
+          display: false,
+          color: "white",
+          borderColor: "transparent",
+          tickColor: "transparent",
+        },
+        ticks: {
+          color: "rgba(200,200,200,0.8)",
+        },
+
+        title: {
+          color: "white",
+          display: false,
+          text: "Year",
+        },
+        beginAtZero: false,
       },
       y: {
-        beginAtZero: true,
+        max: null,
+        ticks: {
+          color: "rgba(200,200,200,0.8)",
+        },
+        grid: {
+          display: false,
+          color: "transparent",
+          borderColor: "transparent",
+          tickColor: "transparent",
+        },
+        title: {
+          color: "grey",
+          display: true,
+          text: " °C ",
+        },
+        beginAtZero: false,
       },
     },
   },
 });
 
+// Eventlistener for local stations trigger related datavisualisation in Chart.js Canvas
+
 let mapStations = document.querySelectorAll(".mapboxgl-marker");
-let canvasChart = document.getElementById("myChart");
 
 for (let i = 0; i < mapStations.length; i++) {
   mapStations[i].addEventListener("click", () => {
-    myChart.reset();
     myChart.data.datasets[0].data = valueArray[i];
     myChart.data.datasets[0].label = labelArray[i];
+    myChart.update("active");
+  });
+}
+// EventListener for Button in Chart.js Canvas changes between line and bar charts
+let chartToggle = document.querySelector(".chartToggle");
+let toggleIcon = document.querySelector(".lni-bar-chart");
+chartToggle.addEventListener("click", () => {
+  if (myChart.config.type === "bar") {
+    myChart.config.type = "line";
     myChart.update();
+    toggleIcon.className = "lni lni-bar-chart";
+  } else {
+    myChart.config.type = "bar";
+    myChart.update();
+    toggleIcon.className = "lni lni-stats-up";
+  }
+});
+
+// Event listener for Tiles shift tiles in viewport and triggers changes in chart.js
+
+let tile3on = document.querySelector(".tile3on");
+let chartTile2on = document.querySelector(".chartTile2on");
+let tile4on = document.querySelector(".tile4on");
+let mapTileoff = document.querySelector(".mapTileoff");
+let backgroundVideo = document.querySelector(".backgroundVideo");
+let chartTileoff = document.querySelector(".chartTileoff");
+let chartTileThreeOff = document.querySelector(".chartTileThreeOff");
+let backButtonOff = document.querySelector(".backButtonOff");
+
+tile3on.addEventListener("click", () => {
+  backgroundVideo.classList.toggle("backgroundVideo");
+  backgroundVideo.classList.toggle("backgroundVideo2");
+  tile3on.classList.toggle("tile3on");
+  tile3on.classList.toggle("tile3off");
+  chartTile2on.classList.toggle("chartTile2on");
+  chartTile2on.classList.toggle("chartTile2off");
+  tile4on.classList.toggle("tile4on");
+  tile4on.classList.toggle("tile4off");
+  mapTileoff.classList.toggle("mapTileoff");
+  mapTileoff.classList.toggle("mapTileon");
+  chartTileoff.classList.toggle("chartTileoff");
+  chartTileoff.classList.toggle("chartTileon");
+  backButtonOff.classList.toggle("backButtonOff");
+  backButtonOff.classList.toggle("backButtonOn");
+  myChart.data.datasets[0].label = "Station";
+  myChart.data.datasets[0].data = 0;
+  myChart.config.data.labels = controlYears;
+  myChart.config.options.scales.y.title.text = "°C";
+  myChart.config.options.scales.y.max = null;
+  myChart.update("active");
+});
+
+tile4on.addEventListener("click", () => {
+  backgroundVideo.classList.toggle("backgroundVideo");
+  backgroundVideo.classList.toggle("backgroundVideo2");
+  tile3on.classList.toggle("tile3on");
+  tile3on.classList.toggle("tile3off");
+  chartTile2on.classList.toggle("chartTile2on");
+  chartTile2on.classList.toggle("chartTile2off");
+  tile4on.classList.toggle("tile4on");
+  tile4on.classList.toggle("tile4off");
+  chartTileThreeOff.classList.toggle("chartTileThreeOff");
+  chartTileThreeOff.classList.toggle("chartTileThreeOn");
+  chartTileoff.classList.toggle("chartTileoff");
+  chartTileoff.classList.toggle("chartTileon");
+  backButtonOff.classList.toggle("backButtonOff");
+  backButtonOff.classList.toggle("backButtonOn");
+  myChart.data.datasets[0].label = "Historic global sealevel";
+  myChart.data.datasets[0].data = arrayLevel;
+  myChart.config.data.labels = arrayYear;
+  myChart.config.options.scales.y.title.text = "m";
+  myChart.config.options.scales.y.max = 2.5;
+  myChart.config.type = "line";
+  myChart.update("active");
+});
+
+backButtonOff.addEventListener("click", () => {
+  if (chartTileThreeOff.className === "chartTileThreeOn") {
+    chartTileThreeOff.classList.toggle("chartTileThreeOff");
+    chartTileThreeOff.classList.toggle("chartTileThreeOn");
+    chartTile2on.classList.toggle("chartTile2on");
+    chartTile2on.classList.toggle("chartTile2off");
+    chartTileoff.classList.toggle("chartTileoff");
+    chartTileoff.classList.toggle("chartTileon");
+    backButtonOff.classList.toggle("backButtonOff");
+    backButtonOff.classList.toggle("backButtonOn");
+    tile3on.classList.toggle("tile3on");
+    tile3on.classList.toggle("tile3off");
+    tile4on.classList.toggle("tile4on");
+    tile4on.classList.toggle("tile4off");
+    backgroundVideo.classList.toggle("backgroundVideo");
+    backgroundVideo.classList.toggle("backgroundVideo2");
+  } else {
+    tile3on.classList.toggle("tile3on");
+    tile3on.classList.toggle("tile3off");
+    chartTile2on.classList.toggle("chartTile2on");
+    chartTile2on.classList.toggle("chartTile2off");
+    tile4on.classList.toggle("tile4on");
+    tile4on.classList.toggle("tile4off");
+    mapTileoff.classList.toggle("mapTileoff");
+    mapTileoff.classList.toggle("mapTileon");
+    chartTileoff.classList.toggle("chartTileoff");
+    chartTileoff.classList.toggle("chartTileon");
+    backButtonOff.classList.toggle("backButtonOff");
+    backButtonOff.classList.toggle("backButtonOn");
+    backgroundVideo.classList.toggle("backgroundVideo");
+    backgroundVideo.classList.toggle("backgroundVideo2");
+  }
+});
+
+let scenarioButtons = document.querySelectorAll(".scenarioButton");
+
+for (let i = 0; i < scenarioButtons.length; i++) {
+  scenarioButtons[i].addEventListener("click", () => {
+    myChart.data.datasets[0].data = predictionArray[i];
+    myChart.data.labels = predictionYear;
+    myChart.update("active");
   });
 }
 
-// let stationsArray = document.querySelectorAll(".mapboxgl-marker");
+// Paragraph changes by timeot function
+let dataInfoPara = document.querySelector(".dataInfoPara");
 
-// for (let i = 0; i < stationsArray.length; i++) {
-//   stationsArray[i].addEventListener("click", () => {
-//     dataset = datasetObjects[i];
-//   });
-// }
+setTimeout(function () {
+  dataInfoPara.textContent =
+    "Please click on any tile below to enter data visualisation ";
+}, 9000);

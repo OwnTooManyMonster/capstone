@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <a href="https://icons8.com/icon/I3E7chNxer6z/tap-gesture"></a>
     <title>oceaneum</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet" />
@@ -24,14 +24,95 @@
       <main class="mainArea">
         <div class="videoDiv">
           <video class="backgroundVideo" autoplay loop muted>
-            <source src="src/video/anemoneCard.mp4" type="video/mp4" />
+            <source src="src/video/Untitled.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="contentDiv">
-          <div class="mapBox"><div id="map"></div></div>
+          <div class="backButtonOff">
+            <i class="arrowIcon lni lni-arrow-left"></i>
+          </div>
+          <div class="mapTileoff">
+            <div id="map"></div>
+          </div>
+          <div class="chartTile2on">
+            <p class="dataInfoPara">
+              The tiles below provide selected data <br />
+              of atmospheric and oceanic temperature anomalies during the last
+              120 years...
+            </p>
 
-          <div class="statBox1">
-            <canvas id="myChart" width="40" height="40"></canvas>
+            <div class="IconTile">
+              <img
+                class="tileIcon"
+                src="src/pic/Screenshot 2021-05-26 at 10.46.18.png"
+              /><img
+                class="tileIcon"
+                src="src/pic/Screenshot 2021-05-26 at 10.46.33.png"
+              />
+              <div class="clickIcon">
+                <img src="https://img.icons8.com/ios/50/ffffff/drag-left.png" />
+              </div>
+            </div>
+          </div>
+          <div class="chartTileThreeOff">
+            <p class="dataInfoPara2">
+              The graph below shows the global sealevel increase from 1900 to
+              present. Please click on any scenario button for possible future
+              projections
+            </p>
+            <div class="buttonBox">
+              <div class="scenarioButton">
+                <p class="buttonText">Low</p>
+              </div>
+              <div class="scenarioButton"><p class="buttonText">High</p></div>
+              <div class="scenarioButton">
+                <p class="buttonText">Extreme</p>
+              </div>
+            </div>
+          </div>
+          <div class="chartTileoff">
+            <div class="chartToggle">
+              <div class="toggleIcon"><i class="lni lni-bar-chart"></i></div>
+            </div>
+            <canvas id="myChart" width="40" height="40"> </canvas>
+          </div>
+          <div class="tile3on">
+            <div class="tileanimate">
+              <div class="tileParaOne">
+                <p>NOAA Historic temperature data</p>
+              </div>
+              <div class="barOne"></div>
+
+              <div class="barTwo"></div>
+
+              <div class="barThree"></div>
+
+              <div class="barFour"></div>
+
+              <div class="barFive"></div>
+            </div>
+          </div>
+          <div class="tile4on">
+            <div class="tileanimateTwo">
+              <div class="tileParaTwo">
+                <p>Historic sealevel data and projections</p>
+              </div>
+              <div class="tileLines">
+                <div class="lineOne"></div>
+
+                <div class="lineTwo"></div>
+
+                <div class="lineThree"></div>
+
+                <div class="lineFour"></div>
+
+                <div class="lineFive"></div>
+
+                <div class="lineSix"></div>
+
+                <div class="lineSeven"></div>
+              </div>
+            </div>
           </div>
         </div>
       </main>
