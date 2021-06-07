@@ -9,8 +9,8 @@
 .contentBox {
   position: relative;
   margin: 13%;
-  width: 300px;
-  height: 300px;
+  width: 280px;
+  height: 280px;
   background-color: rgba(50, 50, 60, 0.3);
   border-radius: 1%;
   animation: boxSize 2s;
@@ -42,6 +42,13 @@
     background-color: rgba(50, 50, 60, 0.3);
   }
 }
+.playIcon {
+  position: absolute;
+  font-size: 400%;
+  color: rgba(200, 200, 200, 0.9);
+  top: 50%;
+  left: 5%;
+}
 
 .paraBox {
   opacity: 70%;
@@ -72,7 +79,7 @@
 }
 
 .backgroundVideo {
-  opacity: 30%;
+  opacity: 25%;
   width: 1300px;
   height: 736px;
   position: relative;
@@ -91,4 +98,13 @@
   height: 736px;
   position: absolute;
   overflow: hidden;
+}
+
+.backgroundVideo3 {
+  opacity: 80%;
+  width: 620px;
+  height: 550px;
+  position: relative;
+  right: 55px;
+  bottom: 150px;
 }

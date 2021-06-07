@@ -6,8 +6,8 @@
 }
 
 .gridLayout {
-  width: 414px;
-  height: 100vh;
+  width: 100vw;
+  height: 100%;
   background-color: RGB(25, 30, 40);
   display: flex;
   flex-direction: column;
@@ -16,8 +16,8 @@
 .navigationBar {
   display: flex;
   justify-content: space-around;
-  width: 400px;
-  height: 75px;
+  width: 100vw;
+  height: 12vh;
   transition-duration: 5s;
 }
 
@@ -25,22 +25,22 @@
   display: flex;
   justify-content: space-around;
   background-color: rgba(200, 200, 200, 0.1);
-  width: 400px;
-  height: 75px;
+  width: 100%;
+  height: 5em;
   transition-duration: 5s;
 }
 
 .mainArea {
-  width: auto;
+  width: 100vw;
+  height: 88vh;
   display: flex;
   flex-direction: column;
   background-color: transparent;
-  margin-left: 2%;
 }
 
 .menuIcon {
   margin: 4%;
-  color: seashell;
+  color: #fff5ee;
   font-size: 270%;
   opacity: 70%;
   transition-duration: 0.7s;
@@ -55,8 +55,8 @@
 .navButton {
   pointer-events: none;
   opacity: 0%;
-  width: 70px;
-  height: 30px;
+  width: 4em;
+  height: 1.8em;
   background-color: transparent;
   margin: 4%;
   transition-duration: 1.4s;
@@ -64,8 +64,8 @@
 
 .navButtonToggle {
   opacity: 70%;
-  width: 70px;
-  height: 30px;
+  width: 4em;
+  height: 1.8em;
   background-color: transparent;
   margin: 4%;
   box-shadow: 1pt 1pt 1pt 1pt rgba(192, 192, 192, 0.3);
@@ -74,10 +74,15 @@
 }
 
 .buttonParaIndex {
+  text-decoration: none;
   padding-top: 6%;
   color: whitesmoke;
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   font-weight: bolder;
   text-shadow: 1px 0px rgb(200, 200, 200);
   text-align: center;
+}
+a:link,
+a:visited {
+  text-decoration: none;
 }
